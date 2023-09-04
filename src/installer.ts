@@ -36,7 +36,9 @@ async function downloadMaven(version: string): Promise<string> {
   const mirror = core.getInput('mirror');
   const defaultRepo = "https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven"
   const baseUrl = mirror ? mirror : defaultRepo
-  const downloadUrl = `${baseUrl}/${version}/apache-maven-${version}-bin.tar.gz`;
+  const binDirectory = mirror ? '/binaries' : ''
+  const downloadUrl = `${baseUrl}/${version}${binDirectory}/apache-maven-${version}-bin.tar.gz`;
+
   console.log(`downloading ${downloadUrl}`);
 
   try {
